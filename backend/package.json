@@ -1,0 +1,16 @@
+{
+  "name": "daksh-backend",
+  "version": "1.0.0",
+  "description": "Backend for Daksh 2020",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DSC-SASTRA-UNIVERSITY",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.6"
+  }
+}
