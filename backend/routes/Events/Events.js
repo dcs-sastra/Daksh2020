@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const register = require('./eventRegister');
-const getEvents = require('./getEvents');
+const getEvents = require('./GetEvents');
+const postEvents = require('./AddEvents');
 
 
-router.use('/register', register);
 router.use('/', getEvents);
-
+router.use('/add', postEvents);
 
 
 
