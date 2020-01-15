@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const { errors } = require('celebrate');
 const app = express();
-
+const verifyToken = require('./middlewares/verifyToken')
 
 
 /**
@@ -18,8 +18,8 @@ const Events = require('./routes/Events/Events')
 */
 
 const connectDb = () => {
-	mongoose.connect(process.env.mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-		console.log("Connected to MongoDB!")
+	mongoose.connect(process.env.mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+		console.log("Connected to MongoDB!", err)
 	})
 }
 
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(errors());
 
-app.get('/', (req, res) => {
+app.get('/', verifyToken, (req, res) => {
 	res.json({ message: "This is Daksh 2020 Backend Api" });
 });
 

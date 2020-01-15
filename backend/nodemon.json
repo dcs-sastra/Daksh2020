@@ -1,6 +1,7 @@
 {
   "env": {
     "PORT": 8080,
-    "mongo_uri": "mongodb+srv://devUser:devUser123@cluster0-kk4ar.mongodb.net/test?retryWrites=true&w=majority"
+    "SECRET": "vash25",
+    "mongo_uri": "mongodb+srv://vash25:vash25@cluster0-bbkpl.mongodb.net/test?retryWrites=true&w=majority"
   }
 }

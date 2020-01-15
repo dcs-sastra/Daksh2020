@@ -32,7 +32,7 @@ router.post('/', celebrate(schema), async (req, res) => {
 
     try {
         const savedUser = await user.save()
-        res.json({ ...savedUser, ok: true, message: "New User added sucessfully" })
+        res.json({ ...savedUser._doc, password: null, ok: true, message: "New User added sucessfully" })
     } catch (err) {
         res.status(400).send(err)
     }
