@@ -1,6 +1,6 @@
 const express = require('express');
 const Event = require('../../models/Events');
-const { celebrate, Joi } = require('celebrate');
+const { celebrate, Joi, errors } = require('celebrate');
 const router = express.Router();
 
 const eventPostSchema = {
@@ -41,5 +41,9 @@ router.post('/', celebrate(eventPostSchema), async (req, res) => {
     })
   }
 })
+
+
+router.post(errors());
+
 
 module.exports = router;

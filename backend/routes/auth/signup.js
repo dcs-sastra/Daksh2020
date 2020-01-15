@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router();
 const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
-const { celebrate, Joi } = require('celebrate');
+const { celebrate, Joi, errors } = require('celebrate');
 
 const schema = {
     body: {
@@ -38,4 +38,5 @@ router.post('/', celebrate(schema), async (req, res) => {
     }
 });
 
+router.use(errors());
 module.exports = router;

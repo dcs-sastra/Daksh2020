@@ -2,13 +2,13 @@ const express = require("express")
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const User = require('../../models/User')
-const { celebrate, Joi } = require('celebrate')
+const { celebrate, Joi, errors } = require('celebrate')
 
 const loginSchema = {
-  body: {
-    email: Joi.string().required(),
+  body: Joi.object().keys({
+    email: Joi.string().email().required(),
     password: Joi.string().required()
-  }
+  }).required()
 }
 
 
@@ -34,5 +34,7 @@ router.post('/', celebrate(loginSchema), async (req, res) => {
   }
 
 });
+
+router.use(errors())
 
 module.exports = router;

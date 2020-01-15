@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const { errors } = require('celebrate');
 const app = express();
 
 
@@ -28,7 +29,7 @@ const { PORT } = process.env;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(errors());
 
 app.get('/', (req, res) => {
 	res.json({ message: "This is Daksh 2020 Backend Api" });
