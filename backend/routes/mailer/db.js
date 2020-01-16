@@ -10,13 +10,12 @@ async function handleEmailSent(_id, to) {
 		_id,
 		'emails.to': to
 	}, {
-		'emails.$.status': "sent",
+		'emails.$.status': "delivered",
 		'emails.$.err': ""
 	})
 }
 
 async function handleEmailError(_id, to, custom_msg, err="") {
-	console.log("_id: "+ _id);
 	const email = await EmailSet.findOneAndUpdate({
 		_id,
 		'emails.to': to
