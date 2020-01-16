@@ -38,4 +38,9 @@ async function initEmailStatuses(obj) {
 	return ret._id;
 }
 
-module.exports = {getRecipients, handleEmailError, handleEmailSent, initEmailStatuses};
+async function getEmailStatuses(eventID) {
+	const emailSet = await EmailSet.find(eventID);
+	return emailSet;
+}
+
+module.exports = {getRecipients, handleEmailError, handleEmailSent, initEmailStatuses, getEmailStatuses};
