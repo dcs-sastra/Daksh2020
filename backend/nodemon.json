@@ -2,7 +2,6 @@
   "env": {
     "PORT": 8080,
     "SECRET": "vash25",
-    "mongo_uri": "mongodb://localhost/daksh2020",
-    "SENDGRID_API_KEY": "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"
+    "mongo_uri": "mongodb+srv://vash25:vash25@cluster0-bbkpl.mongodb.net/test?retryWrites=true&w=majority"
   }
 }
