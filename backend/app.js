@@ -12,6 +12,7 @@ const verifyToken = require('./middlewares/verifyToken')
 
 const Auth = require('./routes/auth/Auth')
 const Events = require('./routes/Events/Events')
+const Mailer = require('./routes/mailer/Mailer')
 
 /**
  * Connect to DB!
@@ -37,6 +38,7 @@ app.get('/', verifyToken, (req, res) => {
 
 app.use('/auth', Auth)
 app.use('/events', Events)
+app.use('/mailer', Mailer)
 
 app.listen(PORT, () => {
 	connectDb();
