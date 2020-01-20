@@ -26,11 +26,11 @@ const connectDb = () => {
 }
 
 /* hackathon db connection */
-mongoose.connect(process.env.mongo_uri_hackathon,{ useNewUrlParser: true,useCreateIndex : true,useUnifiedTopology: true });
-const connection = mongoose.connection;
-connection.once('open',()=>{
-    console.log('mongoose db for hackathon established successfully')
-})
+// mongoose.connect(process.env.mongo_uri_hackathon,{ useNewUrlParser: true,useCreateIndex : true,useUnifiedTopology: true });
+// const connection = mongoose.connection;
+// connection.once('open',()=>{
+//     console.log('mongoose db for hackathon established successfully')
+// })
 
 
 
@@ -51,7 +51,7 @@ app.use('/auth', Auth)
 app.use('/events', Events)
 app.use('/admin', [verifyToken, adminAccess], Admin)
 app.use('/mailer', Mailer)
-app.use('/document',Document)
+app.use('/document', Document)
 
 app.listen(PORT, () => {
 	connectDb();
