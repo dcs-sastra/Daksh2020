@@ -13,7 +13,7 @@ const verifyToken = require('./middlewares/verifyToken')
 const Auth = require('./routes/auth/Auth')
 const Events = require('./routes/Events/Events')
 const Mailer = require('./routes/mailer/Mailer')
-
+const Document = require('./routes/hackathon/Document') //for hackatothon form
 /**
  * Connect to DB!
 */
@@ -23,6 +23,13 @@ const connectDb = () => {
 		console.log("Connected to MongoDB!", err)
 	})
 }
+
+/* hackathon db connection */
+mongoose.connect(process.env.mongo_uri_hackathon,{ useNewUrlParser: true,useCreateIndex : true,useUnifiedTopology: true });
+const connection = mongoose.connection;
+connection.once('open',()=>{
+    console.log('mongoose db for hackathon established successfully')
+})
 
 
 
@@ -39,6 +46,7 @@ app.get('/', verifyToken, (req, res) => {
 app.use('/auth', Auth)
 app.use('/events', Events)
 app.use('/mailer', Mailer)
+app.use('/document',Document)
 
 app.listen(PORT, () => {
 	connectDb();
