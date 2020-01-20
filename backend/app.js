@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const { errors } = require('celebrate');
 const app = express();
 const verifyToken = require('./middlewares/verifyToken')
-
+const adminAccess = require('./middlewares/adminAccess')
 
 /**
  * Route Modules
@@ -12,6 +12,7 @@ const verifyToken = require('./middlewares/verifyToken')
 
 const Auth = require('./routes/auth/Auth')
 const Events = require('./routes/Events/Events')
+const Admin = require('./routes/Admin/Admin')
 
 /**
  * Connect to DB!
@@ -26,10 +27,13 @@ const connectDb = () => {
 
 
 const { PORT } = process.env;
+global.appRoot = __dirname;
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(errors());
+app.use(express.static('public'))
 
 app.get('/', verifyToken, (req, res) => {
 	res.json({ message: "This is Daksh 2020 Backend Api" });
@@ -37,6 +41,7 @@ app.get('/', verifyToken, (req, res) => {
 
 app.use('/auth', Auth)
 app.use('/events', Events)
+app.use('/admin', [verifyToken, adminAccess], Admin)
 
 app.listen(PORT, () => {
 	connectDb();

@@ -11,7 +11,8 @@ const schema = {
         password: Joi.string().required(),
         college: Joi.string().required(),
         regNo: Joi.string().required(),
-        year: Joi.number().required()
+        year: Joi.number().required(),
+        role: Joi.string()
     }
 }
 
@@ -27,7 +28,8 @@ router.post('/', celebrate(schema), async (req, res) => {
         password: hashPassword,
         college: req.body.college,
         regNo: req.body.regNo,
-        year: req.body.year
+        year: req.body.year,
+        role: req.body.role || "User"
     })
 
     try {

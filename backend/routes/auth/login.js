@@ -18,7 +18,7 @@ router.post('/', celebrate(loginSchema), async (req, res) => {
     if (!user) return res.status(400).send('Email does not exist')
     const isPassword = await bcrypt.compare(req.body.password, user.password)
     if (isPassword) {
-      const token = await jwt.sign({ _id: user.id }, process.env.SECRET)
+      const token = await jwt.sign({ _id: user.id, role: user.role }, process.env.SECRET)
       res.header('auth-token', token).status(201).json({ ...user._doc, password: null, ok: true, message: "Login Success!", token });
     }
     else
