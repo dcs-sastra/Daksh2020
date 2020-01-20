@@ -1,9 +1,0 @@
-{
-  "env": {
-    "PORT": 8080,
-    "SECRET": "vash25",
-    "mongo_uri": "mongodb+srv://vash25:vash25@cluster0-bbkpl.mongodb.net/test?retryWrites=true&w=majority",
-    "AWS_Access": "AKIAJJGJ4UMAGZFC7MCQ",
-    "AWS_Secret": "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"
-  }
-}
