@@ -13,6 +13,7 @@ const adminAccess = require('./middlewares/adminAccess')
 const Auth = require('./routes/auth/Auth')
 const Events = require('./routes/Events/Events')
 const Admin = require('./routes/Admin/Admin')
+const Mailer = require('./routes/mailer/Mailer')
 
 /**
  * Connect to DB!
@@ -42,6 +43,7 @@ app.get('/', verifyToken, (req, res) => {
 app.use('/auth', Auth)
 app.use('/events', Events)
 app.use('/admin', [verifyToken, adminAccess], Admin)
+app.use('/mailer', Mailer)
 
 app.listen(PORT, () => {
 	connectDb();
