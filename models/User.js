@@ -9,7 +9,8 @@ const schema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        min: 6
+        min: 6,
+        unique: true
     },
     password: {
         type: String,

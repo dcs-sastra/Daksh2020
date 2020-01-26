@@ -1,37 +1,40 @@
 const mongoose = require('mongoose');
 require('mongoose-type-url');
+require('mongoose-type-email');
 
 const Schema = mongoose.Schema;
 
 const hackathonSchema = new Schema({
-    name :{
-        type : String,
-        required : true
+    teamName: {
+        type: String,
+        required: true
     },
-    email:{
-        type:String,
-        required:true,
+    leaderDetails: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
     },
-    college:{
-        type:String,
-        required:true
-    },
-    github:{
-        type : mongoose.SchemaTypes.Url,
-        required : true
-    },
-    teamMates:[{
-        type:String  // Array of String for multiple team mates
+    teamMatesEmail: [{
+        type: mongoose.SchemaTypes.Email,
+        unique: true
     }],
-    ideaInConcise :{
-        type : String,
-        required:true
+    ideaInConcise: {
+        type: String,
+        required: true
     },
-    documentLink :{
-        type : mongoose.SchemaTypes.Url,
-        required:true
-    }
+    documentLink: {
+        type: mongoose.SchemaTypes.Url,
+        required: true
+    },
+    teamMatesDetail:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
 
+    }],
+    eventTitle:{
+        type: String,
+        required: true
+    }
 },{timestamps : true})
 
 module.exports = mongoose.model('hackathonFormData',hackathonSchema)
