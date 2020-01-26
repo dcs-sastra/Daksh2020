@@ -12,7 +12,8 @@ const regDetails = {
         teamMatesEmail: Joi.array().items(Joi.string()),
         ideaInConcise: Joi.string().required(),
         documentLink: Joi.string().required(),
-        teamMatesDetail: Joi.array().items(Joi.objectId())
+        teamMatesDetail: Joi.array().items(Joi.objectId()),
+        eventTitle: Joi.string().required()
     }
 }
 
@@ -41,7 +42,7 @@ router.post('/addTeam',celebrate(regDetails),async(req,res)=>{
             const ret = newTeam.save()
             res.status(201).json({ 
                 ok: true,
-                message: "user added",
+                message: "team added",
                 user:   ret
             });
         })
@@ -49,7 +50,7 @@ router.post('/addTeam',celebrate(regDetails),async(req,res)=>{
         console.log(error)
         res.status(500).json({
             ok: false,
-            message: "Data unable to save"
+            message: "Team data unable to save"
         })
     }
 })

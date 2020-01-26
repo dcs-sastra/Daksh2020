@@ -30,7 +30,11 @@ const hackathonSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
 
-    }]
+    }],
+    eventTitle:{
+        type: String,
+        required: true
+    }
 },{timestamps : true})
 
 module.exports = mongoose.model('hackathonFormData',hackathonSchema)
