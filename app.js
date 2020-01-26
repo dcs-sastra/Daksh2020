@@ -14,7 +14,7 @@ const Auth = require('./routes/auth/Auth')
 const Events = require('./routes/Events/Events')
 const Admin = require('./routes/Admin/Admin')
 const Mailer = require('./routes/mailer/Mailer')
-const Document = require('./routes/hackathon/Document') //for hackatothon form
+const Hackathon = require('./routes/hackathon/Document') //for hackatothon form
 /**
  * Connect to DB!
 */
@@ -51,7 +51,7 @@ app.use('/auth', Auth)
 app.use('/events', Events)
 app.use('/admin', [verifyToken, adminAccess], Admin)
 app.use('/mailer', Mailer)
-app.use('/document', Document)
+app.use('/hackathon', [verifyToken],Hackathon)
 
 app.listen(PORT, () => {
 	connectDb();

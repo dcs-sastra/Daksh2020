@@ -1,0 +1,8 @@
+{
+    "env": {
+      "PORT": 8080,
+      "SECRET": "vash25",
+      "mongo_uri": "mongodb+srv://ayushsingh12march:54y*kP4LSqHs_D3@formdata-pjzrf.mongodb.net/test?retryWrites=true&w=majority"
+    }
+  }
+  
