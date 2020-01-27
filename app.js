@@ -5,7 +5,7 @@ const { errors } = require('celebrate');
 const app = express();
 const verifyToken = require('./middlewares/verifyToken')
 const adminAccess = require('./middlewares/adminAccess')
-
+const path = require('path')
 /**
  * Route Modules
 */
@@ -31,27 +31,28 @@ const connectDb = () => {
 // connection.once('open',()=>{
 //     console.log('mongoose db for hackathon established successfully')
 // })
-
-
+app.use(express.static(path.join(__dirname, 'fe/build')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(errors());
 
 const { PORT } = process.env;
 global.appRoot = __dirname;
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(errors());
-app.use(express.static('public'))
-
-app.get('/', verifyToken, (req, res) => {
-	res.json({ message: "This is Daksh 2020 Backend Api" });
-});
+// app.get('/', (req, res) => {
+// 	res.json({ message: "This is Daksh 2020 Backend Api" });
+// });
 
 app.use('/auth', Auth)
+app.use('/hackathon', [verifyToken], Hackathon)
 app.use('/events', Events)
 app.use('/admin', [verifyToken, adminAccess], Admin)
 app.use('/mailer', Mailer)
-app.use('/hackathon', [verifyToken],Hackathon)
+
+if (process.env.NODE_ENV === 'production') {
+	app.get('*', (req, res) => { res.sendFile(path.join(__dirname = 'fe/build/index.html')); })
+}
 
 app.listen(PORT, () => {
 	connectDb();
