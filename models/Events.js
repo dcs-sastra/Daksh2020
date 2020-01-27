@@ -22,6 +22,13 @@ const eventSchema = new Schema({
   venue: {
     type: String,
     required: true
+  },
+  problemStatement: {
+  	type: String,
+  	required: true
+  },
+  prize: {
+  	type: Number,
   }
 }, { timestamps: true });
 

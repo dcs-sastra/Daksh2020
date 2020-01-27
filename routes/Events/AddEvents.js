@@ -9,7 +9,9 @@ const eventPostSchema = {
     description: Joi.string().required(),
     eventDate: Joi.string().default(new Date().toISOString),
     venue: Joi.string().required(),
-    poster: Joi.string().required()
+    poster: Joi.string().required(),
+    problemStatement: Joi.string().required(),
+    prize: Joi.number()
   }
 }
 
@@ -19,6 +21,8 @@ const eventPostSchema = {
  * @api_params eventDate : Date(String format)
  * @api_params venue : String
  * @api_params poster : String
+ * @api_params problemStatement : String
+ * @api_params prize : Number
  *
 */
 
