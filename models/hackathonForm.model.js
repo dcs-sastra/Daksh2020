@@ -14,10 +14,6 @@ const hackathonSchema = new Schema({
         ref: 'user',
         required: true
     },
-    teamMatesEmail: [{
-        type: mongoose.SchemaTypes.Email,
-        unique: true
-    }],
     ideaInConcise: {
         type: String,
         required: true
@@ -26,15 +22,23 @@ const hackathonSchema = new Schema({
         type: mongoose.SchemaTypes.Url,
         required: true
     },
-    teamMatesDetail:[{
+    teamMatesDetail: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-
+        ref: 'user'
     }],
-    eventTitle:{
+    eventId: {
         type: String,
         required: true
+    },
+    pairId: {
+        type: String,
+        required: true,
+        unique: true
     }
-},{timestamps : true})
+}, { timestamps: true })
 
-module.exports = mongoose.model('hackathonFormData',hackathonSchema)
+const hackSchema = mongoose.model('hackathonFormData', hackathonSchema)
+
+hackSchema.init();
+
+module.exports = hackSchema;
