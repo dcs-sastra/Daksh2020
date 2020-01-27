@@ -24,11 +24,11 @@ const eventSchema = new Schema({
     required: true
   },
   problemStatement: {
-  	type: String,
-  	required: true
+    type: String,
+    required: true
   },
   prize: {
-  	type: Number,
+    type: Number,
   }
 }, { timestamps: true });
 

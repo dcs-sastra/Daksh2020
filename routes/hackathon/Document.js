@@ -30,30 +30,47 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
         req.body.leaderDetails = req.user._id;
         const emails = req.body.teamMatesEmail;
         const TeamMatesId = emails.map(async email => {
-            return User.findOne({ email }).then((user) => user._id)
+            return User.findOne({ email }).then((user) => {
+                if (user) {
+                    return user._id
+                } else {
+                    res.status(400).json({
+                        ok: false,
+                        message: "Team mates email not registered!"
+                    })
+                }
+            })
         });
         Promise.all(TeamMatesId).then(async (data) => {
-            console.log("Found data in promise", data);
-            req.body.teamMatesDetail = data
+            try {
 
-            const pairId = req.body.eventId + req.user._id
-            const d = { ...req.body };
-            const newTeam = Team({
-                pairId,
-                teamName: req.body.teamName,
-                ideaInConcise: req.body.ideaInConcise,
-                documentLink: req.body.documentLink,
-                teamMatesDetail: req.body.teamMatesDetail,
-                eventId: req.body.eventId,
-                leaderDetails: req.body.leaderDetails
-            })
-            console.log("req.body.teamMatesDetail", req.body.teamMatesDetail)
-            const ret = newTeam.save()
-            res.status(201).json({
-                ok: true,
-                message: "team added",
-                user: ret
-            });
+                console.log("Found data in promise", data);
+                req.body.teamMatesDetail = data
+
+                const pairId = req.body.eventId + req.user._id
+                const d = { ...req.body };
+                const newTeam = Team({
+                    pairId,
+                    teamName: req.body.teamName,
+                    ideaInConcise: req.body.ideaInConcise,
+                    documentLink: req.body.documentLink,
+                    teamMatesDetail: req.body.teamMatesDetail,
+                    eventId: req.body.eventId,
+                    leaderDetails: req.body.leaderDetails
+                })
+                console.log("req.body.teamMatesDetail", req.body.teamMatesDetail)
+                const ret = await newTeam.save()
+                res.status(201).json({
+                    ok: true,
+                    message: "team added",
+                    team: ret
+                });
+            } catch (error) {
+                res.status(400).json({
+                    ok: false,
+                    message: "Already Registered for the hackathon"
+                })
+            }
         })
     } catch (error) {
         console.log(error)
