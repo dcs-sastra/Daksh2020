@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors');
 const { errors } = require('celebrate');
 const app = express();
 const verifyToken = require('./middlewares/verifyToken')
@@ -31,6 +32,7 @@ const connectDb = () => {
 // connection.once('open',()=>{
 //     console.log('mongoose db for hackathon established successfully')
 // })
+app.use(cors({origin: 'https://daksh.tech'}));
 app.use(express.static(path.join(__dirname, 'fe/build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
