@@ -32,7 +32,7 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
         const TeamMatesId = emails.map(async email => {
             return User.findOne({ email }).then((user) => {
                 console.log(user);
-                if (user) {
+                if (user !== null || user != undefined) {
                     return user._id
                 } else {
                     res.status(400).json({
