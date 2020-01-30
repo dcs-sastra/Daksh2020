@@ -78,6 +78,7 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
                     team: ret
                 });
             } catch (error) {
+                console.log(error);
                 res.status(400).json({
                     ok: false,
                     message: "Already Registered for the hackathon"
@@ -85,7 +86,7 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
             }
         })
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
         res.status(500).json({
             ok: false,
             message: "Team data unable to save"
