@@ -38,6 +38,7 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
                         ok: false,
                         message: "Team mates email not registered!"
                     })
+                    return;
                 }
             })
         });
@@ -45,6 +46,14 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
             try {
 
                 console.log("Found data in promise", data);
+                data.forEach(user => {
+                    if (user === undefined || user === null) {
+                        res.status(400).json({
+                            ok: false,
+                            message: "Teammates email not found"
+                        })
+                    }
+                });
                 req.body.teamMatesDetail = data
 
                 const pairId = req.body.eventId + req.user._id
