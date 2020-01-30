@@ -35,10 +35,12 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
                 if (user !== null || user != undefined) {
                     return user._id
                 } else {
-                    res.status(400).json({
-                        ok: false,
-                        message: "Team mates email not registered!"
-                    })
+                    // res.status(400).json({
+                    //     ok: false,
+                    //     message: "Team mates email not registered!"
+                    // })
+                    console.log("I'm reaching the error block");
+                    throw Error("This is error thrown by me")
                     return;
                 }
             })
