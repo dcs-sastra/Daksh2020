@@ -13,7 +13,7 @@ const schema = {
         regNo: Joi.string().required(),
         year: Joi.number().required(),
         role: Joi.string(),
-        phone: Joi.number().required()
+        phone: Joi.string().required()
     }
 }
 
