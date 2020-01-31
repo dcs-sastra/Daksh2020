@@ -12,7 +12,8 @@ const schema = {
         college: Joi.string().required(),
         regNo: Joi.string().required(),
         year: Joi.number().required(),
-        role: Joi.string()
+        role: Joi.string(),
+        phone: Joi.string()
     }
 }
 
