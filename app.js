@@ -32,7 +32,7 @@ const connectDb = () => {
 // connection.once('open',()=>{
 //     console.log('mongoose db for hackathon established successfully')
 // })
-app.use(cors({ origin: 'https://daksh.tech' }));
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'fe/build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
