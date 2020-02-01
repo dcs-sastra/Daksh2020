@@ -14,10 +14,6 @@ const hackathonSchema = new Schema({
         ref: 'user',
         required: true
     },
-    ideaInConcise: {
-        type: String,
-        required: true
-    },
     documentLink: {
         type: mongoose.SchemaTypes.Url,
         required: true
@@ -27,7 +23,8 @@ const hackathonSchema = new Schema({
         ref: 'user'
     }],
     eventId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'events',
         required: true
     },
     pairId: {
