@@ -12,7 +12,8 @@ const schema = {
         college: Joi.string().required(),
         regNo: Joi.string().required(),
         year: Joi.number().required(),
-        role: Joi.string()
+        role: Joi.string(),
+        phone: Joi.string().required()
     }
 }
 
@@ -29,6 +30,7 @@ router.post('/', celebrate(schema), async (req, res) => {
         college: req.body.college,
         regNo: req.body.regNo,
         year: req.body.year,
+        phone: req.body.phone,
         role: req.body.role || "User"
     })
 

@@ -33,6 +33,10 @@ const schema = mongoose.Schema({
         type: String,
         required: true,
         default: "User"
+    },
+    phone:{
+        type:String,
+        required:true
     }
 })
 

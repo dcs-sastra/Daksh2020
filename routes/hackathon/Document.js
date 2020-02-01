@@ -10,7 +10,7 @@ const regDetails = {
     body: {
         teamName: Joi.string().required(),
         teamMatesEmail: Joi.array().items(Joi.string()),
-        ideaInConcise: Joi.string().required(),
+        ideaInConcise: Joi.string(),
         documentLink: Joi.string().required(),
         teamMatesDetail: Joi.array().items(Joi.objectId()),
         eventId: Joi.string().required()
@@ -64,7 +64,6 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
                 const newTeam = Team({
                     pairId,
                     teamName: req.body.teamName,
-                    ideaInConcise: req.body.ideaInConcise,
                     documentLink: req.body.documentLink,
                     teamMatesDetail: req.body.teamMatesDetail,
                     eventId: req.body.eventId,

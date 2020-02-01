@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
       const ret = `/exports/csv-${fileName}.csv`
       return res.status(201).download(filePath);
     });
-
   } catch (err) {
     console.error(err);
     res.status(400).json({
