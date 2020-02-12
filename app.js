@@ -16,6 +16,7 @@ const Events = require('./routes/Events/Events')
 const Admin = require('./routes/Admin/Admin')
 const Mailer = require('./routes/mailer/Mailer')
 const Hackathon = require('./routes/hackathon/Document') //for hackatothon form
+const Subscribe = require('./routes/subscribe/subscribe')
 /**
  * Connect to DB!
 */
@@ -51,6 +52,7 @@ app.use('/hackathon', [verifyToken], Hackathon)
 app.use('/events', Events)
 app.use('/admin', [verifyToken, adminAccess], Admin)
 app.use('/mailer', Mailer)
+app.use('/subscribeEmail', Subscribe)
 
 if (process.env.NODE_ENV === 'production') {
 	app.get('*', (req, res) => { res.sendFile(path.join(__dirname = 'fe/build/index.html')); })
