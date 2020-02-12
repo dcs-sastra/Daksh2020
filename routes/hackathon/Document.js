@@ -40,7 +40,10 @@ router.post('/addTeam', celebrate(regDetails), async (req, res) => {
                     //     message: "Team mates email not registered!"
                     // })
                     console.log("I'm reaching the error block");
-                    throw Error("This is error thrown by me")
+                    res.status(400).json({
+                        ok: false,
+                        message: "Team Mate Email not found!"
+                    })
                     return;
                 }
             })
