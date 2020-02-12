@@ -34,9 +34,9 @@ const schema = mongoose.Schema({
         required: true,
         default: "User"
     },
-    phone:{
-        type:Number,
-        required:true
+    phone: {
+        type: String,
+        required: true
     }
 })
 
